@@ -131,6 +131,7 @@
     <ClCompile Include="Command.cpp" />
     <ClCompile Include="DesignPatterns.cpp" />
     <ClCompile Include="Mediator.cpp" />
+    <ClCompile Include="Observer.cpp" />
     <ClCompile Include="StringValidator.cpp" />
     <ClCompile Include="StringValidator2.cpp" />
   </ItemGroup>
@@ -138,6 +139,7 @@
     <ClInclude Include="Command.h" />
     <ClInclude Include="CommandDomain.h" />
     <ClInclude Include="Mediator.h" />
+    <ClInclude Include="Observer.h" />
     <ClInclude Include="StringValidator.h" />
     <ClInclude Include="StringValidator2.h" />
   </ItemGroup>

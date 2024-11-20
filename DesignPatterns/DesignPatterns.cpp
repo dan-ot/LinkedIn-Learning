@@ -5,6 +5,7 @@
 #include "CommandDomain.h"
 #include "Command.h"
 #include "Mediator.h"
+#include "Observer.h"
 
 using namespace std;
 
@@ -61,6 +62,21 @@ int main()
     ui.married(true);
     ui.print();
     
+    auto user1 = make_shared<ChatUser>("Jim");
+    auto user2 = make_shared<ChatUser>("Barb");
+    auto user3 = make_shared<ChatUser>("Hannah");
+
+    auto group1 = make_shared<ChatGroup>("Gardening Group");
+    auto group2 = make_shared<ChatGroup>("Dog Lover's Group");
+
+    group1->subscribe(user1);
+    group1->subscribe(user2);
+
+    group2->subscribe(user2);
+    group2->subscribe(user3);
+
+    group1->publish("Special sale on gardening supplies!");
+    group2->publish("It's national dog day everyone!");
 
     return 0;
 }
