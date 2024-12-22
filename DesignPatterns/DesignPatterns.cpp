@@ -19,13 +19,13 @@ static string vector_to_string(vector<string> v) {
 
 int main()
 {
-    auto five = NumberExpression("5");
-    auto seven = NumberExpression("7");
+    auto five = Expression::Number("5");
+    auto seven = Expression::Number("7");
     string plus = "+";
     string minus = "-";
-    auto fivePlusSeven = OperationExpression(plus, (Expression*)&five, (Expression*)&seven);
-    auto thirteen = NumberExpression("13");
-    auto thirteenMinusFivePlusSeven = OperationExpression(minus, (Expression*)&thirteen, (Expression*)&fivePlusSeven);
+    auto fivePlusSeven = Expression::Operation(plus, five, seven);
+    auto thirteen = Expression::Number("13");
+    auto thirteenMinusFivePlusSeven = Expression::Operation(minus, thirteen, fivePlusSeven);
 
     auto fps = fivePlusSeven.evaluate();
 
