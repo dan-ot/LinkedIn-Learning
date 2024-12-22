@@ -19,9 +19,9 @@ static string vector_to_string(vector<string> v) {
 
 int main()
 {
-    auto deliveredState = new DeliveredState(nullptr);
-    auto inTransitState = new InTransitState(deliveredState);
-    auto purchasedState = new PurchasedState(inTransitState);
+    auto deliveredState = make_shared<DeliveredState>(nullptr);
+    auto inTransitState = make_shared<InTransitState>(deliveredState);
+    auto purchasedState = make_shared<PurchasedState>(inTransitState);
 
     auto purchase = Purchase("Shoes", purchasedState);
 
@@ -33,10 +33,6 @@ int main()
 
     cout << purchase.getDescription();
     purchase.goToNextState();
-
-    delete deliveredState;
-    delete inTransitState;
-    delete purchasedState;
 
     return 0;
 }

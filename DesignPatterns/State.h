@@ -1,40 +1,41 @@
 #pragma once
 #include <string>
+#include <memory>
 
 class State {
 protected:
-	State* nextState = nullptr;
+	std::shared_ptr<State> nextState = nullptr;
 public:
-	State(State* nextState) : nextState(nextState) {};
+	State(std::shared_ptr<State> nextState) : nextState(nextState) {};
 	virtual std::string getDescription() = 0;
-	State* getNextState();
+	std::shared_ptr<State> getNextState();
 };
 
 class PurchasedState : public State {
 public:
-	PurchasedState(State* nextState) : State(nextState) {};
+	PurchasedState(std::shared_ptr<State> nextState) : State(nextState) {};
 	std::string getDescription() override;
 };
 
 class InTransitState : public State {
 public:
-	InTransitState(State* nextState) : State(nextState) {};
+	InTransitState(std::shared_ptr<State> nextState) : State(nextState) {};
 	std::string getDescription() override;
 };
 
 class DeliveredState : public State {
 public:
-	DeliveredState(State* nextState) : State(nextState) {};
+	DeliveredState(std::shared_ptr<State> nextState) : State(nextState) {};
 	std::string getDescription() override;
 };
 
 class Purchase
 {
 	std::string productName;
-	State* currentState;
+	std::shared_ptr<State> currentState;
 
 public:
-	Purchase(const std::string& productName, State* initialState)
+	Purchase(const std::string& productName, std::shared_ptr<State> initialState)
 		: productName(productName), currentState(initialState) {
 	};
 

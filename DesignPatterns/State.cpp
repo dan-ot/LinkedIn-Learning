@@ -8,22 +8,22 @@ string PurchasedState::getDescription()
     return "Current State: PURCHASED - Will be shipping soon.\n";
 }
 
-State* State::getNextState()
+shared_ptr<State> State::getNextState()
 {
     return nextState;
 }
 
-std::string InTransitState::getDescription()
+string InTransitState::getDescription()
 {
     return "Current State: IN TRANSIT - Your item is on the way.\n";
 }
 
-std::string DeliveredState::getDescription()
+string DeliveredState::getDescription()
 {
     return "Current State: DELIVERED - Your item has arrived.\n";
 }
 
-std::string Purchase::getDescription()
+string Purchase::getDescription()
 {
     return currentState->getDescription();
 }
