@@ -2,15 +2,17 @@
 #include <string>
 #include <memory>
 #include <optional>
+#include <variant>
 
 class Expression;
 
 class OperationExpression {
 	std::string operatorSymbol;
-	std::unique_ptr<Expression> leftHandSide;
-	std::unique_ptr<Expression> rightHandSide;
+	std::shared_ptr<Expression> leftHandSide;
+	std::shared_ptr<Expression> rightHandSide;
 public:
-	OperationExpression(std::string& symbol, Expression& lhs, Expression& rhs);
+	OperationExpression(std::string& symbol, std::shared_ptr<Expression> lhs, std::shared_ptr<Expression> rhs)
+		: operatorSymbol(symbol), leftHandSide(lhs), rightHandSide(rhs) {};
 	std::optional<int> evaluate();
 };
 
@@ -24,10 +26,10 @@ public:
 class Expression
 {
 private:
-	std::optional<OperationExpression> maybeOperation;
-	std::optional<NumberExpression> maybeNumber;
+	std::variant<OperationExpression, NumberExpression> expression;
 public:
+	Expression(std::variant<OperationExpression, NumberExpression> ex) : expression(ex) {};
 	std::optional<int> evaluate();
 	static Expression Number(std::string number);
-	static Expression Operation(std::string symbol, Expression& lhs, Expression& rhs);
+	static Expression Operation(std::string symbol, std::shared_ptr<Expression> lhs, std::shared_ptr<Expression> rhs);
 };

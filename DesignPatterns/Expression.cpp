@@ -4,33 +4,22 @@
 using namespace std;
 
 optional<int> Expression::evaluate() {
-	if (maybeOperation.has_value()) {
-		return maybeOperation.value().evaluate();
+	if (get_if<OperationExpression>(&expression)) {
+		return get_if<OperationExpression>(&expression)->evaluate();
 	}
 	else {
-		return maybeNumber.value().evaluate();
+		return get_if<NumberExpression>(&expression)->evaluate();
 	}
 }
 
 Expression Expression::Number(std::string number)
 {
-	auto ex = Expression();
-	ex.maybeNumber = optional<NumberExpression>(NumberExpression(number));
-	return ex;
+	return Expression(NumberExpression(number));
 }
 
-Expression Expression::Operation(std::string symbol, Expression& lhs, Expression& rhs)
+Expression Expression::Operation(std::string symbol, shared_ptr<Expression> lhs, shared_ptr<Expression> rhs)
 {
-	auto ex = Expression();
-	ex.maybeOperation = optional<OperationExpression>(OperationExpression(symbol, lhs, rhs));
-	return ex;
-}
-
-OperationExpression::OperationExpression(string& symbol, Expression& lhs, Expression& rhs)
-{
-	operatorSymbol = symbol;
-	leftHandSide = make_unique<Expression>(lhs);
-	rightHandSide = make_unique<Expression>(rhs);
+	return Expression(OperationExpression(symbol, lhs, rhs));
 }
 
 optional<int> OperationExpression::evaluate()

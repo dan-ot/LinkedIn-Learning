@@ -5,7 +5,7 @@
 #include "Command.h"
 #include "Mediator.h"
 #include "Observer.h"
-#include "Expression.h"
+#include "State.h"
 
 using namespace std;
 
@@ -19,31 +19,24 @@ static string vector_to_string(vector<string> v) {
 
 int main()
 {
-    auto five = Expression::Number("5");
-    auto seven = Expression::Number("7");
-    string plus = "+";
-    string minus = "-";
-    auto fivePlusSeven = Expression::Operation(plus, five, seven);
-    auto thirteen = Expression::Number("13");
-    auto thirteenMinusFivePlusSeven = Expression::Operation(minus, thirteen, fivePlusSeven);
+    auto deliveredState = new DeliveredState(nullptr);
+    auto inTransitState = new InTransitState(deliveredState);
+    auto purchasedState = new PurchasedState(inTransitState);
 
-    auto fps = fivePlusSeven.evaluate();
+    auto purchase = Purchase("Shoes", purchasedState);
 
-    if (fps.has_value()) {
-        cout << "5 + 7 = " << fps.value();
-    }
-    else {
-        cout << "5 + 7 = ERROR";
-    }
+    cout << purchase.getDescription();
+    purchase.goToNextState();
 
-    auto tmf = thirteenMinusFivePlusSeven.evaluate();
+    cout << purchase.getDescription();
+    purchase.goToNextState();
 
-    if (tmf.has_value()) {
-        cout << "13 - (5 + 7) = " << tmf.value();
-    }
-    else {
-        cout << "13 - (5 + 7) = ERROR";
-    }
+    cout << purchase.getDescription();
+    purchase.goToNextState();
+
+    delete deliveredState;
+    delete inTransitState;
+    delete purchasedState;
 
     return 0;
 }
