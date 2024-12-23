@@ -6,6 +6,7 @@
 #include "Mediator.h"
 #include "Observer.h"
 #include "State.h"
+#include "Strategy.h"
 
 using namespace std;
 
@@ -19,20 +20,22 @@ static string vector_to_string(vector<string> v) {
 
 int main()
 {
-    auto deliveredState = make_shared<DeliveredState>(nullptr);
-    auto inTransitState = make_shared<InTransitState>(deliveredState);
-    auto purchasedState = make_shared<PurchasedState>(inTransitState);
+    auto business = Person(new FormalGreetingStrategy());
+    auto normal = Person(new NormalGreetingStrategy());
+    auto cool = Person(new CoolGreetingStrategy());
+    auto politician = Person(new FormalGreetingStrategy());
 
-    auto purchase = Purchase("Shoes", purchasedState);
+    cout << "The businessperson says ";
+    business.greet("Shaun");
 
-    cout << purchase.getDescription();
-    purchase.goToNextState();
+    cout << "The normal person says ";
+    normal.greet("Shaun");
 
-    cout << purchase.getDescription();
-    purchase.goToNextState();
+    cout << "The cool person says ";
+    cool.greet("Shaun");
 
-    cout << purchase.getDescription();
-    purchase.goToNextState();
+    cout << "The politician says ";
+    politician.greet("Shaun");
 
     return 0;
 }

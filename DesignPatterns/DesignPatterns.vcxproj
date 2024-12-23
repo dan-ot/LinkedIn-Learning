@@ -134,6 +134,7 @@
     <ClCompile Include="Mediator.cpp" />
     <ClCompile Include="Observer.cpp" />
     <ClCompile Include="State.cpp" />
+    <ClCompile Include="Strategy.cpp" />
     <ClCompile Include="StringValidator.cpp" />
     <ClCompile Include="StringValidator2.cpp" />
   </ItemGroup>
@@ -144,6 +145,7 @@
     <ClInclude Include="Mediator.h" />
     <ClInclude Include="Observer.h" />
     <ClInclude Include="State.h" />
+    <ClInclude Include="Strategy.h" />
     <ClInclude Include="StringValidator.h" />
     <ClInclude Include="StringValidator2.h" />
   </ItemGroup>
