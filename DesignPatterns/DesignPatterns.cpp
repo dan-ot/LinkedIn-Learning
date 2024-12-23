@@ -7,6 +7,7 @@
 #include "Observer.h"
 #include "State.h"
 #include "Strategy.h"
+#include "TemplateMethod.h"
 
 using namespace std;
 
@@ -20,22 +21,18 @@ static string vector_to_string(vector<string> v) {
 
 int main()
 {
-    auto business = Person(new FormalGreetingStrategy());
-    auto normal = Person(new NormalGreetingStrategy());
-    auto cool = Person(new CoolGreetingStrategy());
-    auto politician = Person(new FormalGreetingStrategy());
+    auto gct = GreetingCardTemplate();
+    auto bct = BirthdayCardTemplate();
+    auto nyt = NewYearsCardTemplate();
 
-    cout << "The businessperson says ";
-    business.greet("Shaun");
+    cout << "Greeting:\n";
+    cout << gct.generate("A", "B");
 
-    cout << "The normal person says ";
-    normal.greet("Shaun");
+    cout << "Birthday:\n";
+    cout << bct.generate("A", "B");
 
-    cout << "The cool person says ";
-    cool.greet("Shaun");
-
-    cout << "The politician says ";
-    politician.greet("Shaun");
+    cout << "New Year's:\n";
+    cout << nyt.generate("A", "B");
 
     return 0;
 }
