@@ -8,6 +8,7 @@
 #include "State.h"
 #include "Strategy.h"
 #include "TemplateMethod.h"
+#include "Visitor.h"
 
 using namespace std;
 
@@ -21,18 +22,21 @@ static string vector_to_string(vector<string> v) {
 
 int main()
 {
-    auto gct = GreetingCardTemplate();
-    auto bct = BirthdayCardTemplate();
-    auto nyt = NewYearsCardTemplate();
+    auto person = Visitor::Person("John", 48);
+    auto landmark = Visitor::Landmark("Eiffel Tower", "Paris");
+    auto car = Visitor::Car("Chevy", "Spark");
 
-    cout << "Greeting:\n";
-    cout << gct.generate("A", "B");
+    Visitor::Visitor* dbv = new Visitor::DatabaseVisitor();
+    Visitor::Visitor* tfv = new Visitor::TextFileVisitor();
 
-    cout << "Birthday:\n";
-    cout << bct.generate("A", "B");
+    person.accept(dbv);
+    person.accept(tfv);
 
-    cout << "New Year's:\n";
-    cout << nyt.generate("A", "B");
+    landmark.accept(dbv);
+    landmark.accept(tfv);
+
+    car.accept(dbv);
+    car.accept(tfv);
 
     return 0;
 }

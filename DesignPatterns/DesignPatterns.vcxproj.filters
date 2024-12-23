@@ -45,6 +45,9 @@
     <ClCompile Include="TemplateMethod.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Visitor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="StringValidator.h">
@@ -75,6 +78,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="TemplateMethod.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Visitor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

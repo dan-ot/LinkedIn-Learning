@@ -138,6 +138,7 @@
     <ClCompile Include="StringValidator.cpp" />
     <ClCompile Include="StringValidator2.cpp" />
     <ClCompile Include="TemplateMethod.cpp" />
+    <ClCompile Include="Visitor.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Command.h" />
@@ -150,6 +151,7 @@
     <ClInclude Include="StringValidator.h" />
     <ClInclude Include="StringValidator2.h" />
     <ClInclude Include="TemplateMethod.h" />
+    <ClInclude Include="Visitor.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
