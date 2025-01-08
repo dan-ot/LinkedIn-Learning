@@ -22,21 +22,28 @@ static string vector_to_string(vector<string> v) {
 
 int main()
 {
-    auto person = Visitor::Person("John", 48);
-    auto landmark = Visitor::Landmark("Eiffel Tower", "Paris");
-    auto car = Visitor::Car("Chevy", "Spark");
+    auto p1 = V::Person("John", 40);
+    auto p2 = V::Person("Joan", 80);
+    auto p3 = V::Person("Brenda", 25);
 
-    Visitor::Visitor* dbv = new Visitor::DatabaseVisitor();
-    Visitor::Visitor* tfv = new Visitor::TextFileVisitor();
+    auto generator = GreetingCardGenerator();
+    generator.addPerson(&p1);
+    generator.addPerson(&p2);
+    generator.addPerson(&p3);
 
-    person.accept(dbv);
-    person.accept(tfv);
+    generator.setTemplate(new BirthdayCardTemplate("Bob"));
+    auto birthdayCards = generator.sendGreetingCards();
 
-    landmark.accept(dbv);
-    landmark.accept(tfv);
+    generator.setTemplate(new NewYearsCardTemplate("Penelope"));
+    auto newYearCards = generator.sendGreetingCards();
 
-    car.accept(dbv);
-    car.accept(tfv);
+    for (auto &card : birthdayCards) {
+        cout << card;
+    }
+
+    for (auto& card : newYearCards) {
+        cout << card;
+    }
 
     return 0;
 }

@@ -1,53 +1,28 @@
 #include "Visitor.h"
 #include <iostream>
+#include <sstream>
 
 using namespace std;
 
-namespace Visitor {
+namespace V {
 
-void DatabaseVisitor::handlePerson(const std::string& name, const int age)
+string DatabaseVisitor::handlePerson(const std::string& name, const int age)
 {
-	cout << "Database - " << name << ", " << age << "\n";
+	auto ss = stringstream();
+	ss << "Database - " << name << ", " << age << "\n";
+	return ss.str();
 }
 
-void DatabaseVisitor::handleLandmark(const std::string& name, const std::string& cityName)
+string TextFileVisitor::handlePerson(const std::string& name, const int age)
 {
-	cout << "Database - " << name << ", " << cityName << "\n";
+	auto ss = stringstream();
+	ss << "Text File - " << name << ", " << age << "\n";
+	return ss.str();
 }
 
-void DatabaseVisitor::handleCar(const std::string& make, const std::string& model)
+string Person::accept(Visitor* visitor)
 {
-	cout << "Database - " << make << " " << model << "\n";
-}
-
-void TextFileVisitor::handlePerson(const std::string& name, const int age)
-{
-	cout << "Text File - " << name << ", " << age << "\n";
-}
-
-void TextFileVisitor::handleLandmark(const std::string& name, const std::string& cityName)
-{
-	cout << "Text File - " << name << ", " << cityName << "\n";
-}
-
-void TextFileVisitor::handleCar(const std::string& make, const std::string& model)
-{
-	cout << "Text File - " << make << " " << model << "\n";
-}
-
-void Person::accept(Visitor* visitor)
-{
-	visitor->handlePerson(name, age);
-}
-
-void Car::accept(Visitor* visitor)
-{
-	visitor->handleCar(make, model);
-}
-
-void Landmark::accept(Visitor* visitor)
-{
-	visitor->handleLandmark(name, cityName);
+	return visitor->handlePerson(name, age);
 }
 
 }
