@@ -11,6 +11,7 @@
 #include "Visitor.h"
 #include "Iterator.h"
 #include "Memento.h"
+#include "NullObject.h"
 
 using namespace std;
 
@@ -24,31 +25,15 @@ static string vector_to_string(vector<string> v) {
 
 int main()
 {
-	auto canvas = M::Canvas();
-	
-	canvas.add_shape("rhombus");
-	canvas.add_shape("triangle");
-	canvas.add_shape("square");
-	canvas.add_shape("circle");
-	
-	for (auto shape : canvas.get_shapes()) {
-		cout << shape << ", ";
-	}
+	SomeTask task1(new ConsoleLogger());
+	SomeTask task2(new FileLogger("log.txt"));
+	SomeTask task3(new ApiLogger("https://log.com"));
+	SomeTask task4;
 
-	cout << "\n";
-
-	canvas.add_shape("rhombus");
-	canvas.add_shape("triangle");
-	canvas.add_shape("square");
-	canvas.add_shape("circle");
-	canvas.undo();
-
-	for (auto shape : canvas.get_shapes()) {
-		cout << shape << ", ";
-	}
-
-	cout << "\n";
-	
+	task1.execute();
+	task2.execute();
+	task3.execute();
+	task4.execute();
 
 	return 0;
 }
