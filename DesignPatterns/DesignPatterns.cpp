@@ -10,6 +10,7 @@
 #include "TemplateMethod.h"
 #include "Visitor.h"
 #include "Iterator.h"
+#include "Memento.h"
 
 using namespace std;
 
@@ -23,25 +24,31 @@ static string vector_to_string(vector<string> v) {
 
 int main()
 {
-	auto numbers = vector{ 1,2,3,4,5,6,7 };
-	auto nc = NumberCollection(numbers);
-
-	NumberIterator* fi = nc.getForwardIterator();
-	NumberIterator* bi = nc.getBackwardIterator();
-
-	while (fi->isFinished() == false) {
-		cout << fi->next() << ", ";
+	auto canvas = M::Canvas();
+	
+	canvas.add_shape("rhombus");
+	canvas.add_shape("triangle");
+	canvas.add_shape("square");
+	canvas.add_shape("circle");
+	
+	for (auto shape : canvas.get_shapes()) {
+		cout << shape << ", ";
 	}
+
 	cout << "\n";
 
-	cout << "Backwards: ";
+	canvas.add_shape("rhombus");
+	canvas.add_shape("triangle");
+	canvas.add_shape("square");
+	canvas.add_shape("circle");
+	canvas.undo();
 
-	while (bi->isFinished() == false) {
-		cout << bi->next() << ", ";
+	for (auto shape : canvas.get_shapes()) {
+		cout << shape << ", ";
 	}
-	cout << "\n";
 
-	delete fi;
-	delete bi;
+	cout << "\n";
+	
+
 	return 0;
 }
