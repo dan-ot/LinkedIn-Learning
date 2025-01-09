@@ -9,41 +9,39 @@
 #include "Strategy.h"
 #include "TemplateMethod.h"
 #include "Visitor.h"
+#include "Iterator.h"
 
 using namespace std;
 
 static string vector_to_string(vector<string> v) {
-    stringstream ss;
-    for (auto& s : v) {
-        ss << s << ", ";
-    }
-    return ss.str();
+	stringstream ss;
+	for (auto& s : v) {
+		ss << s << ", ";
+	}
+	return ss.str();
 }
 
 int main()
 {
-    auto p1 = V::Person("John", 40);
-    auto p2 = V::Person("Joan", 80);
-    auto p3 = V::Person("Brenda", 25);
+	auto numbers = vector{ 1,2,3,4,5,6,7 };
+	auto nc = NumberCollection(numbers);
 
-    auto generator = GreetingCardGenerator();
-    generator.addPerson(&p1);
-    generator.addPerson(&p2);
-    generator.addPerson(&p3);
+	NumberIterator* fi = nc.getForwardIterator();
+	NumberIterator* bi = nc.getBackwardIterator();
 
-    generator.setTemplate(new BirthdayCardTemplate("Bob"));
-    auto birthdayCards = generator.sendGreetingCards();
+	while (fi->isFinished() == false) {
+		cout << fi->next() << ", ";
+	}
+	cout << "\n";
 
-    generator.setTemplate(new NewYearsCardTemplate("Penelope"));
-    auto newYearCards = generator.sendGreetingCards();
+	cout << "Backwards: ";
 
-    for (auto &card : birthdayCards) {
-        cout << card;
-    }
+	while (bi->isFinished() == false) {
+		cout << bi->next() << ", ";
+	}
+	cout << "\n";
 
-    for (auto& card : newYearCards) {
-        cout << card;
-    }
-
-    return 0;
+	delete fi;
+	delete bi;
+	return 0;
 }

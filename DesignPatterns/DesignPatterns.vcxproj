@@ -131,6 +131,7 @@
     <ClCompile Include="Command.cpp" />
     <ClCompile Include="DesignPatterns.cpp" />
     <ClCompile Include="Expression.cpp" />
+    <ClCompile Include="Iterator.cpp" />
     <ClCompile Include="Mediator.cpp" />
     <ClCompile Include="Observer.cpp" />
     <ClCompile Include="State.cpp" />
@@ -144,6 +145,7 @@
     <ClInclude Include="Command.h" />
     <ClInclude Include="CommandDomain.h" />
     <ClInclude Include="Expression.h" />
+    <ClInclude Include="Iterator.h" />
     <ClInclude Include="Mediator.h" />
     <ClInclude Include="Observer.h" />
     <ClInclude Include="State.h" />
