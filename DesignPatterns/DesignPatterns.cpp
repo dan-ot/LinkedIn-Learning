@@ -25,7 +25,7 @@ static string vector_to_string(vector<string> v) {
 
 int main()
 {
-	auto history = new M::NoOpHistory();
+	auto history = new M::CanvasHistory();
 	auto canvas = new M::Canvas(history);
 
 	canvas->add_shape("rhombus");

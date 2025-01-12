@@ -28,7 +28,6 @@ CanvasMemento* ForwardIterator::next()
 {
 	auto current = history.at(currentPosition);
 	currentPosition += 1;
-	history.pop_back();
 	return current;
 }
 
