@@ -25,15 +25,18 @@ static string vector_to_string(vector<string> v) {
 
 int main()
 {
-	SomeTask task1(new ConsoleLogger());
-	SomeTask task2(new FileLogger("log.txt"));
-	SomeTask task3(new ApiLogger("https://log.com"));
-	SomeTask task4;
+	auto history = new M::NoOpHistory();
+	auto canvas = new M::Canvas(history);
 
-	task1.execute();
-	task2.execute();
-	task3.execute();
-	task4.execute();
+	canvas->add_shape("rhombus");
+	canvas->add_shape("triangle");
+	canvas->add_shape("square");
+	canvas->add_shape("circle");
+
+	cout << "Watching replay: \n";
+
+	auto replayCanvas = new M::ReplayCanvas(history);
+	replayCanvas->replay();
 
 	return 0;
 }
