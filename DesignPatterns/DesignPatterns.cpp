@@ -3,41 +3,44 @@
 
 #include "Factory.h"
 #include "AbstractFactory.h"
+#include "Builder.h"
 
 using namespace std;
 
 int main()
 {
-	ThemeFactory* factory;
+	MealBuilder* cook;
+	MealCombo* meal;
 	int choice;
 
-	cout << "Select a theme: " << endl;
-	cout << "1: Dark" << endl;
-	cout << "2: Light" << endl;
+	cout << "Select a meal: " << endl;
+	cout << "1: Hamburger meal" << endl;
+	cout << "2: Hotdog meal" << endl;
 	cout << "Selection > ";
 	cin >> choice;
 	cout << endl;
 
 	switch (choice) {
 	case 1:
-		factory = new DarkFactory();
+		cook = new BurgerMeal();
 		break;
 	case 2:
-		factory = new LightFactory();
+		cook = new HotDogMeal();
 		break;
 	default:
-		cout << "That's not a legit choice.";
+		cout << "What stupid choice." << endl;
 		return 1;
 	}
 
-	auto background = factory->setBackground();
-	auto text = factory->getDefaultText();
-	auto green = factory->getGreenText();
-	
-	text->message();
-	green->message();
+	cout << "Making selected meeal." << endl;
 
-	cout << "Goodbye." << endl;
+	cook->cookEntree();
+	cook->cookSide();
+	cook->fillDrink();
+
+	meal = cook->getMeal();
+
+	meal->report();
 
 	return 0;
 }

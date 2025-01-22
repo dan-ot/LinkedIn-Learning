@@ -129,6 +129,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AbstractFactory.cpp" />
+    <ClCompile Include="Builder.cpp" />
     <ClCompile Include="Command.cpp" />
     <ClCompile Include="DesignPatterns.cpp" />
     <ClCompile Include="Expression.cpp" />
@@ -147,6 +148,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AbstractFactory.h" />
+    <ClInclude Include="Builder.h" />
     <ClInclude Include="Command.h" />
     <ClInclude Include="CommandDomain.h" />
     <ClInclude Include="Expression.h" />
