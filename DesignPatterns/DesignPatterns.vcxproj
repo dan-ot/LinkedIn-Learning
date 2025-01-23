@@ -140,6 +140,7 @@
     <ClCompile Include="NullObject.cpp" />
     <ClCompile Include="Observer.cpp" />
     <ClCompile Include="Prototype.cpp" />
+    <ClCompile Include="Singleton.cpp" />
     <ClCompile Include="State.cpp" />
     <ClCompile Include="Strategy.cpp" />
     <ClCompile Include="StringValidator.cpp" />
@@ -160,6 +161,7 @@
     <ClInclude Include="NullObject.h" />
     <ClInclude Include="Observer.h" />
     <ClInclude Include="Prototype.h" />
+    <ClInclude Include="Singleton.h" />
     <ClInclude Include="State.h" />
     <ClInclude Include="Strategy.h" />
     <ClInclude Include="StringValidator.h" />
