@@ -2,8 +2,11 @@
 //
 
 #include <iostream>
+#include <vector>
+#include <string>
 
 #include "OperatorOverloads.h"
+#include "MoveSemantics.h"
 
 using namespace std;
 
@@ -11,20 +14,32 @@ static void print_is(const string& name, const Rational& r) {
     cout << name << " is : " << r.raw_str() << " = " << r << "\n";
 }
 
+void disp_v(auto& v, const std::string& label)
+{
+	if (label.empty() == false)
+		std::cout << label << ": ";
+
+	if (v.empty())
+		std::cout << "[empty]";
+	else
+		for (auto& s : v) std::cout << s << " ";
+
+	std::cout << "\n";
+}
+
 int main()
 {
-    const MultBy times4(4);
-    const MultBy times10(10);
-    //const MultBy times15(15);
+	container<string> a{ "one", "two", "three", "four", "five" };
+	container<string> b{ "five", "six", "seven" };
 
-    const auto times15 = [](int x) { return x * 15; };
+	cout << "a: " << a.str() << "\n";
+	cout << "b: " << b.str() << "\n";
 
-    cout << "times4(5) is " << times4(5) << "\n";
-    cout << "times4(15) is " << times4(15) << "\n";
-    cout << "times10(5) is " << times10(5) << "\n";
-    cout << "times10(15) is " << times10(15) << "\n";
-    cout << "times15(5) is " << times15(5) << "\n";
-    cout << "times15(15) is " << times15(15) << "\n";
+	container<string> c{};
+	c = std::move(a);
+	cout << "a: " << a.str() << "\n";
+	cout << "c: " << c.str() << "\n";
+
     return 0;
 }
 

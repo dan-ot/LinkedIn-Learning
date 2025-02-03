@@ -129,9 +129,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AdvancedConcepts.cpp" />
+    <ClCompile Include="MoveSemantics.cpp" />
     <ClCompile Include="OperatorOverloads.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="MoveSemantics.h" />
     <ClInclude Include="OperatorOverloads.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
