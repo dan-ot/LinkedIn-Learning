@@ -74,13 +74,13 @@ inline container<T>& container<T>::operator=(container rhs)
 	return *this;
 }
 
-template<typename T>
+/*emplate<typename T>
 inline container<T>& container<T>::operator=(container&& rhs) noexcept
 {
 	std::cout << "move assignment operator\n";
 	if (this != &rhs) things = std::move(rhs.things);
 	return *this;
-}
+}*/
 
 template<typename T>
 inline std::string container<T>::str() const

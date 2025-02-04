@@ -2,8 +2,11 @@
 //
 
 #include <iostream>
+#include <algorithm>
+#include <functional>
 #include <vector>
 #include <string>
+#include <map>
 
 #include "OperatorOverloads.h"
 #include "MoveSemantics.h"
@@ -14,7 +17,7 @@ static void print_is(const string& name, const Rational& r) {
     cout << name << " is : " << r.raw_str() << " = " << r << "\n";
 }
 
-void disp_v(auto& v, const std::string& label)
+static void disp_v(auto& v, const std::string& label)
 {
 	if (label.empty() == false)
 		std::cout << label << ": ";
@@ -29,17 +32,39 @@ void disp_v(auto& v, const std::string& label)
 
 int main()
 {
-	container<string> a{ "one", "two", "three", "four", "five" };
-	container<string> b{ "five", "six", "seven" };
+	map<string, function<void()>> table{};
+	table["a"] = [] { cout << "Action A.\n"; };
+	table["b"] = [] { cout << "Thing B.\n"; };
+	table["c"] = [] { cout << "Message C.\n"; };
+	table["d"] = [] { cout << "Algorithm D.\n"; };
 
-	cout << "a: " << a.str() << "\n";
-	cout << "b: " << b.str() << "\n";
+	auto running = true;
+	string response;
 
-	container<string> c{};
-	c = std::move(a);
-	cout << "a: " << a.str() << "\n";
-	cout << "c: " << c.str() << "\n";
+	while (running) {
+		cout << "Pick one, please: \n";
+		cout << "   A | B | C | D | X\n";
+		cout << ">";
+		cin >> response;
+		cout << "\n";
 
+		if (response.size() > 1) {
+			cout << "No, just use one character.\n";
+		}
+		else {
+			response = tolower(response[0]);
+			if (table.find(response) != table.end()) {
+				table[response]();
+			}
+			else if (response == "x") {
+				cout << "Farewell, traveller! \n\n";
+				running = false;
+			}
+			else {
+				cout << "That wasn't one of the options! Try reading harder.\n";
+			}
+		}
+	}
     return 0;
 }
 
