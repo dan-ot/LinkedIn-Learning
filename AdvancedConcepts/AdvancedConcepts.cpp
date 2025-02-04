@@ -7,6 +7,7 @@
 #include <vector>
 #include <string>
 #include <map>
+#include <concepts>
 
 #include "OperatorOverloads.h"
 #include "MoveSemantics.h"
@@ -30,41 +31,21 @@ static void disp_v(auto& v, const std::string& label)
 	std::cout << "\n";
 }
 
+template<typename T>
+concept Numeric = requires(T a) {
+	a + 1;
+	a * 1;
+};
+
+static auto arg42(const Numeric auto& arg) {
+	return arg + 42;
+}
+
 int main()
 {
-	map<string, function<void()>> table{};
-	table["a"] = [] { cout << "Action A.\n"; };
-	table["b"] = [] { cout << "Thing B.\n"; };
-	table["c"] = [] { cout << "Message C.\n"; };
-	table["d"] = [] { cout << "Algorithm D.\n"; };
+	auto n = 7;
+	cout << "The answer is " << arg42(n) << "\n";
 
-	auto running = true;
-	string response;
-
-	while (running) {
-		cout << "Pick one, please: \n";
-		cout << "   A | B | C | D | X\n";
-		cout << ">";
-		cin >> response;
-		cout << "\n";
-
-		if (response.size() > 1) {
-			cout << "No, just use one character.\n";
-		}
-		else {
-			response = tolower(response[0]);
-			if (table.find(response) != table.end()) {
-				table[response]();
-			}
-			else if (response == "x") {
-				cout << "Farewell, traveller! \n\n";
-				running = false;
-			}
-			else {
-				cout << "That wasn't one of the options! Try reading harder.\n";
-			}
-		}
-	}
     return 0;
 }
 
