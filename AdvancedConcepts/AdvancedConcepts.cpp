@@ -8,9 +8,11 @@
 #include <string>
 #include <map>
 #include <concepts>
+#include <variant>
 
 #include "OperatorOverloads.h"
 #include "MoveSemantics.h"
+#include "OptionalsVariants.h"
 
 using namespace std;
 
@@ -31,20 +33,32 @@ static void disp_v(auto& v, const std::string& label)
 	std::cout << "\n";
 }
 
-template<typename T>
-concept Numeric = requires(T a) {
-	a + 1;
-	a * 1;
-};
-
-static auto arg42(const Numeric auto& arg) {
-	return arg + 42;
-}
-
 int main()
 {
-	auto n = 7;
-	cout << "The answer is " << arg42(n) << "\n";
+	using v_animal = variant<Cat, Dog, Wookiee>;
+	vector<v_animal> pets{ Cat("Hobbes"), Dog("Fido"), Cat("Bill"), Wookiee{"Chewie"} };
+
+	cout << "-- get method\n";
+	for (const v_animal& a : pets) {
+		auto idx = a.index();
+		if (idx == 0) get<Cat>(a).speak();
+		if (idx == 1) get<Dog>(a).speak();
+		if (idx == 2) get<Wookiee>(a).speak();
+	}
+
+	cout << "\n";
+	cout << "-- get_if method\n";
+	for (const v_animal& a : pets) {
+		if (const auto& o = get_if<Cat>(&a); o) o->speak();
+		else if (const auto& o = get_if<Dog>(&a); o) o->speak();
+		else if (const auto& o = get_if<Wookiee>(&a); o) o->speak();
+	}
+
+	cout << "\n";
+	cout << "-- visit method\n";
+	for (const v_animal& a : pets) {
+		std::visit(animal_speaks{}, a);
+	}
 
     return 0;
 }

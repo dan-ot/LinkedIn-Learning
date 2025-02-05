@@ -24,12 +24,18 @@
     <ClCompile Include="MoveSemantics.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="OptionalsVariants.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="OperatorOverloads.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="MoveSemantics.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="OptionalsVariants.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

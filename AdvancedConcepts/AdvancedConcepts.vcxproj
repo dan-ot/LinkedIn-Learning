@@ -131,10 +131,12 @@
     <ClCompile Include="AdvancedConcepts.cpp" />
     <ClCompile Include="MoveSemantics.cpp" />
     <ClCompile Include="OperatorOverloads.cpp" />
+    <ClCompile Include="OptionalsVariants.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MoveSemantics.h" />
     <ClInclude Include="OperatorOverloads.h" />
+    <ClInclude Include="OptionalsVariants.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
