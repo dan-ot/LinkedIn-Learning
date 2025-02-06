@@ -9,12 +9,15 @@
 #include <map>
 #include <concepts>
 #include <variant>
+#include <chrono>
 
 #include "OperatorOverloads.h"
 #include "MoveSemantics.h"
 #include "OptionalsVariants.h"
+#include "Concurrency.h"
 
 using namespace std;
+using namespace std::chrono_literals;
 
 static void print_is(const string& name, const Rational& r) {
     cout << name << " is : " << r.raw_str() << " = " << r << "\n";
@@ -35,31 +38,12 @@ static void disp_v(auto& v, const std::string& label)
 
 int main()
 {
-	using v_animal = variant<Cat, Dog, Wookiee>;
-	vector<v_animal> pets{ Cat("Hobbes"), Dog("Fido"), Cat("Bill"), Wookiee{"Chewie"} };
+	thread t1{ producer };
+	thread t2{ consumer };
+	t1.join();
+	t2.join();
 
-	cout << "-- get method\n";
-	for (const v_animal& a : pets) {
-		auto idx = a.index();
-		if (idx == 0) get<Cat>(a).speak();
-		if (idx == 1) get<Dog>(a).speak();
-		if (idx == 2) get<Wookiee>(a).speak();
-	}
-
-	cout << "\n";
-	cout << "-- get_if method\n";
-	for (const v_animal& a : pets) {
-		if (const auto& o = get_if<Cat>(&a); o) o->speak();
-		else if (const auto& o = get_if<Dog>(&a); o) o->speak();
-		else if (const auto& o = get_if<Wookiee>(&a); o) o->speak();
-	}
-
-	cout << "\n";
-	cout << "-- visit method\n";
-	for (const v_animal& a : pets) {
-		std::visit(animal_speaks{}, a);
-	}
-
+	cout << "Finished!\n";
     return 0;
 }
 

@@ -1,14 +1,14 @@
 #pragma once
 #include <string>
 
-class Animal {
+class AnimalC {
 protected:
 	std::string _hairColor;
 	int _hairLength, _tail, _weight, _height, _age;
 	int _intelligence, _stubbornness, _aggressiveness;
 
 public:
-	virtual Animal* clone() = 0;
+	virtual AnimalC* clone() = 0;
 
 	void setHairLength(const int length) { _hairLength = length; }
 	void setHairColor(const std::string& color) { _hairColor = color; }
@@ -18,7 +18,7 @@ public:
 	void setAge(const int age) { _age = age; }
 };
 
-class Sheep : public Animal {
+class Sheep : public AnimalC {
 public:
 	Sheep() {
 		_hairLength = 5;
@@ -30,7 +30,7 @@ public:
 	void shear() { _hairLength -= 2; }
 };
 
-class Cow : public Animal {
+class Cow : public AnimalC {
 public:
 	Cow() {
 		_stubbornness = 6;

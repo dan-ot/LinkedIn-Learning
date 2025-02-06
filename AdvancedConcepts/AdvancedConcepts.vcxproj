@@ -129,11 +129,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AdvancedConcepts.cpp" />
+    <ClCompile Include="Concurrency.cpp" />
     <ClCompile Include="MoveSemantics.cpp" />
     <ClCompile Include="OperatorOverloads.cpp" />
     <ClCompile Include="OptionalsVariants.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Concurrency.h" />
     <ClInclude Include="MoveSemantics.h" />
     <ClInclude Include="OperatorOverloads.h" />
     <ClInclude Include="OptionalsVariants.h" />
