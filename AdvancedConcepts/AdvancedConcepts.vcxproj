@@ -133,12 +133,14 @@
     <ClCompile Include="MoveSemantics.cpp" />
     <ClCompile Include="OperatorOverloads.cpp" />
     <ClCompile Include="OptionalsVariants.cpp" />
+    <ClCompile Include="OtherSubjects.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Concurrency.h" />
     <ClInclude Include="MoveSemantics.h" />
     <ClInclude Include="OperatorOverloads.h" />
     <ClInclude Include="OptionalsVariants.h" />
+    <ClInclude Include="OtherSubjects.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

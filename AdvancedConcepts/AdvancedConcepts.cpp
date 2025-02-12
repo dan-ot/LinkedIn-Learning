@@ -2,6 +2,7 @@
 //
 
 #include <iostream>
+#include <iomanip>
 #include <algorithm>
 #include <functional>
 #include <vector>
@@ -9,18 +10,22 @@
 #include <map>
 #include <concepts>
 #include <variant>
+#include <tuple>
 #include <chrono>
+#include <random>
+#include <ratio>
 
 #include "OperatorOverloads.h"
 #include "MoveSemantics.h"
 #include "OptionalsVariants.h"
 #include "Concurrency.h"
+#include "OtherSubjects.h"
 
 using namespace std;
 using namespace std::chrono_literals;
 
 static void print_is(const string& name, const Rational& r) {
-    cout << name << " is : " << r.raw_str() << " = " << r << "\n";
+    std::cout << name << " is : " << r.raw_str() << " = " << r << "\n";
 }
 
 static void disp_v(auto& v, const std::string& label)
@@ -38,12 +43,24 @@ static void disp_v(auto& v, const std::string& label)
 
 int main()
 {
-	thread t1{ producer };
-	thread t2{ consumer };
-	t1.join();
-	t2.join();
+	auto t = std::chrono::system_clock::now();
+	std::cout << "system_clock::now is " << t << "\n\n";
 
-	cout << "Finished!\n";
+	std::cout << "counting primes up to " << make_commas(MAX_PRIME) << "\n";
+	auto secs = timed(count_primes2);
+	std::cout << "\n";
+
+	std::cout << "time elapsed: " << setprecision(3) << fixed << secs.count() << " sec\n";
+	std::cout << "time elapsed: " << setprecision(3) << fixed << chrono::duration<double, milli>(secs).count() << " ms\n";
+	std::cout << "time elapsed: " << setprecision(3) << scientific << chrono::duration<double, micro>(secs).count() << " microsecs\n";
+	std::cout << "time elapsed: " << floor<chrono::duration<unsigned long, ratio<1, 24>>>(secs).count() << " frames at 24 fps\n";
+	std::cout << "\n";
+
+	std::cout << "time elapsed: " << setprecision(3) << fixed << secs << " sec\n";
+	std::cout << "time elapsed: " << setprecision(3) << fixed << chrono::duration<double, milli>(secs) << " ms\n";
+	std::cout << "time elapsed: " << setprecision(3) << scientific << chrono::duration<double, micro>(secs) << " microsecs\n";
+	std::cout << "\n";
+
     return 0;
 }
 
