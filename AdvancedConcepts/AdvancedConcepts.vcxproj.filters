@@ -33,6 +33,9 @@
     <ClCompile Include="OtherSubjects.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="OtherFeatures.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="OperatorOverloads.h">
@@ -48,6 +51,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="OtherSubjects.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="OtherFeatures.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

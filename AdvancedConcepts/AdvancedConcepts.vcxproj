@@ -133,6 +133,7 @@
     <ClCompile Include="MoveSemantics.cpp" />
     <ClCompile Include="OperatorOverloads.cpp" />
     <ClCompile Include="OptionalsVariants.cpp" />
+    <ClCompile Include="OtherFeatures.cpp" />
     <ClCompile Include="OtherSubjects.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -140,6 +141,7 @@
     <ClInclude Include="MoveSemantics.h" />
     <ClInclude Include="OperatorOverloads.h" />
     <ClInclude Include="OptionalsVariants.h" />
+    <ClInclude Include="OtherFeatures.h" />
     <ClInclude Include="OtherSubjects.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
